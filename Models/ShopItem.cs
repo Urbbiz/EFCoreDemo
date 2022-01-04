@@ -1,8 +1,11 @@
-﻿namespace EFCoreDemo.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EFCoreDemo.Models
 {
     public class ShopItem
     {
-        public int PrimaryKey { get; set; } 
+        [Key]
+        public int id { get; set; } 
         public string Name { get; set;}
     }
 }
