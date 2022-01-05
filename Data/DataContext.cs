@@ -11,5 +11,7 @@ namespace EFCoreDemo.Data
         }
 
         public DbSet<ShopItem> ShopItems { get; set; }
+
+        public DbSet<Shop> Shop { get; set; }
     }
 }
