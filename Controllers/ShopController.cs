@@ -21,6 +21,13 @@ namespace EFCoreDemo.Controllers
             return _context.Shops.ToList();
         }
 
+        [HttpGet("{id}")]
+
+        public Shop GetShop(int id)
+        {
+            return _context.Shops.FirstOrDefault(s => s.id == id);
+        }
+
         [HttpPost]
         public void Post(Shop item)
         {

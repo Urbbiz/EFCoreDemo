@@ -13,14 +13,14 @@ namespace EFCoreDemo.Data
         public DbSet<Shop> Shops { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if(!Shops.Any())
-            {
-                Shops.Add(new Shop()
-                {
-                    Name = "Default Shop"
-                });
-                SaveChanges();
-            }   
+            //if(!Shops.Any())
+            //{
+            //    Shops.Add(new Shop()
+            //    {
+            //        Name = "Default Shop"
+            //    });
+            //    SaveChanges();
+            //}   
         }
     }
 }
