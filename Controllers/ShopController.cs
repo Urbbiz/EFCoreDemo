@@ -1,4 +1,5 @@
 ﻿using EFCoreDemo.Data;
+using EFCoreDemo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFCoreDemo.Controllers
@@ -12,6 +13,38 @@ namespace EFCoreDemo.Controllers
         public ShopController(DataContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        [HttpGet]
+        public List<Shop> GetAll()
+        {
+            return _context.Shops.ToList();
+        }
+
+        [HttpPost]
+        public void Post(Shop item)
+        {
+            _context.Add(item);
+            _context.SaveChanges();
+        }
+
+        [HttpPut]
+        public void Update(Shop item)
+        {
+            _context.Shops.Update(item);
+            _context.SaveChanges();
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var shop = _context.Shops.FirstOrDefault(s => s.id == id);
+
+            if(shop != null)
+            {
+                _context.Remove(shop);
+                _context.SaveChanges();
+            }
         }
     }
 }

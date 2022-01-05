@@ -9,9 +9,18 @@ namespace EFCoreDemo.Data
         {
          
         }
-
-        public DbSet<ShopItem> ShopItems { get; set; }
-
-        public DbSet<Shop> Shop { get; set; }
+        public DbSet<ShopItem>? ShopItems { get; set; }
+        public DbSet<Shop> Shops { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            if(!Shops.Any())
+            {
+                Shops.Add(new Shop()
+                {
+                    Name = "Default Shop"
+                });
+                SaveChanges();
+            }   
+        }
     }
 }

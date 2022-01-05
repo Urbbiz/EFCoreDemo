@@ -12,7 +12,7 @@ namespace EFCoreDemo.Models
 
         public bool Deleted { get; set; } = false;
 
-        public Shop Shop { get; set; }
+        public Shop? Shop { get; set; }
         public int ShopId { get; set; }
     }
 }
