@@ -10,7 +10,7 @@ namespace EFCoreDemo.Data
          
         }
         public DbSet<ShopItem>? ShopItems { get; set; }
-        public DbSet<Shop> Shops { get; set; }
+        public DbSet<Shop>? Shops { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //if(!Shops.Any())

@@ -1,6 +1,8 @@
 ﻿using EFCoreDemo.Data;
 using EFCoreDemo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreDemo.Controllers
 {
@@ -21,6 +23,7 @@ namespace EFCoreDemo.Controllers
             return _context.ShopItems.ToList();
         }
 
+        
         [HttpPost]
         public void Post(ShopItem item)
         {
