@@ -1,4 +1,4 @@
-﻿using EFCoreDemo.Models;
+﻿using EFCoreDemo.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreDemo.Data

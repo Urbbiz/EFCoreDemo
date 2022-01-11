@@ -1,5 +1,5 @@
 ﻿using EFCoreDemo.Data;
-using EFCoreDemo.Models;
+using EFCoreDemo.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFCoreDemo.Controllers
