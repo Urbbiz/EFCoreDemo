@@ -5,22 +5,23 @@ namespace EFCoreDemo.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+
         {
-         
+            if (!Shops.Any())
+            {
+                Shops.Add(new Shop()
+                {
+                    Name = "Default Shop"
+                });
+                SaveChanges();
+            }
         }
+
+
         public DbSet<ShopItem>? ShopItems { get; set; }
         public DbSet<Shop>? Shops { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //if(!Shops.Any())
-            //{
-            //    Shops.Add(new Shop()
-            //    {
-            //        Name = "Default Shop"
-            //    });
-            //    SaveChanges();
-            //}   
-        }
+
+
     }
 }
