@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EFCoreDemo.Data;
 using EFCoreDemo.Entities;
+using EFCoreDemo.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,12 +13,14 @@ namespace EFCoreDemo.Controllers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        private readonly GenericRepository<Shop> _repository;
 
 
-        public ShopController(DataContext context, IMapper mapper)
+        public ShopController(DataContext context, IMapper mapper, GenericRepository<Shop> repository)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper;
+            _repository = _repository;
         }
 
         [HttpGet]
@@ -30,7 +33,8 @@ namespace EFCoreDemo.Controllers
 
         public Shop GetShop(int id)
         {
-            return _context.Shops.FirstOrDefault(s => s.id == id);
+            //  return _context.Shops.FirstOrDefault(s => s.id == id);
+            return _repository.FinidById(id);
         }
 
         [HttpPost]
@@ -50,13 +54,14 @@ namespace EFCoreDemo.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            var shop = _context.Shops.FirstOrDefault(s => s.id == id);
+           await _repository.Delete(id);
+            //var shop = _context.Shops.FirstOrDefault(s => s.id == id);
 
-            if(shop != null)
-            {
-                _context.Remove(shop);
-               await _context.SaveChangesAsync();
-            }
+            //if(shop != null)
+            //{
+            //    _context.Remove(shop);
+            //   await _context.SaveChangesAsync();
+            //}
         }
     }
 }

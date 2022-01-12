@@ -2,6 +2,7 @@
 using EFCoreDemo.Data;
 using EFCoreDemo.Dtos;
 using EFCoreDemo.Entities;
+using EFCoreDemo.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,11 +15,13 @@ namespace EFCoreDemo.Controllers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        private readonly GenericRepository<ShopItem> _repository;
 
-        public ShopItemController(DataContext context, IMapper mapper)
+        public ShopItemController(DataContext context, IMapper mapper, GenericRepository<ShopItem> repository)
         {
             _context = context;
             _mapper = mapper;
+            _repository = repository;
         }
 
         [HttpGet]   
@@ -30,7 +33,15 @@ namespace EFCoreDemo.Controllers
        
         }
 
-        
+        public ShopItemDto GetShop(int id)
+        {
+            //  return _context.Shops.FirstOrDefault(s => s.id == id);
+            var entity = _repository.FinidById(id);
+
+            return _mapper.Map<ShopItemDto>(entity);
+        }
+
+
         [HttpPost]
         public async Task Post(ShopItemDto item)
         {

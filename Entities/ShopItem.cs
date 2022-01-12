@@ -1,16 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EFCoreDemo.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreDemo.Entities
 {
-    public class ShopItem
+    public class ShopItem : Entity
     {
-        [Key]
-        public int id { get; set; }
-        
-        [MaxLength(50)]
-        public string? Name { get; set;}
-
         public bool Deleted { get; set; } = false;
 
         public Shop? Shop { get; set; }

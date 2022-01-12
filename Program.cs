@@ -1,4 +1,6 @@
 using EFCoreDemo.Data;
+using EFCoreDemo.Entities.Base;
+using EFCoreDemo.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//builder.Services.AddScoped<GenericRepository<Entity>>();
+
+builder.Services.AddScoped(typeof(GenericRepository<>));
 
 var defaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataContext>(d => d.UseSqlServer(defaultConnectionString));

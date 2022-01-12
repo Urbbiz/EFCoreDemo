@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EFCoreDemo.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreDemo.Entities
 {
-    public class Shop
+    public class Shop : Entity
     {
-        [Key]
-        public int id { get; set; }
-        public string? Name { get; set; }
+     
     }
 }
