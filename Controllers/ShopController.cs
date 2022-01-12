@@ -1,6 +1,8 @@
-﻿using EFCoreDemo.Data;
+﻿using AutoMapper;
+using EFCoreDemo.Data;
 using EFCoreDemo.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreDemo.Controllers
 {
@@ -9,16 +11,19 @@ namespace EFCoreDemo.Controllers
     public class ShopController : Controller
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public ShopController(DataContext context)
+
+        public ShopController(DataContext context, IMapper mapper)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public List<Shop> GetAll()
+        public async Task<IEnumerable<Shop>> GetAll()
         {
-            return _context.Shops.ToList();
+            return await _context.Shops.ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -29,28 +34,28 @@ namespace EFCoreDemo.Controllers
         }
 
         [HttpPost]
-        public void Post(Shop item)
+        public async Task Post(Shop item)
         {
             _context.Add(item);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         [HttpPut]
-        public void Update(Shop item)
+        public async Task Update(Shop item)
         {
             _context.Shops.Update(item);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var shop = _context.Shops.FirstOrDefault(s => s.id == id);
 
             if(shop != null)
             {
                 _context.Remove(shop);
-                _context.SaveChanges();
+               await _context.SaveChangesAsync();
             }
         }
     }

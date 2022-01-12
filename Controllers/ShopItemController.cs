@@ -22,9 +22,9 @@ namespace EFCoreDemo.Controllers
         }
 
         [HttpGet]   
-        public List<ShopItemDto> GetAll()
+        public async Task<List<ShopItemDto>> GetAll()
         {
-            var enteties = _context.ShopItems.ToList();
+            var enteties = await _context.ShopItems.ToListAsync();
             var dto = _mapper.Map<List<ShopItemDto>>(enteties);
             return dto;
        
@@ -32,11 +32,13 @@ namespace EFCoreDemo.Controllers
 
         
         [HttpPost]
-        public void Post(ShopItemDto item)
+        public async Task Post(ShopItemDto item)
         {
             var entity = _mapper.Map<ShopItem>(item);
+
             _context.ShopItems.Add(entity);
-            _context.SaveChanges();
+
+            _context.SaveChangesAsync();
         }
     }
 }
