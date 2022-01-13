@@ -13,7 +13,7 @@ namespace EFCoreDemo.Controllers
     public class CustomerController : GenericControllerBase<CustomerDto, Customer>
     {
 
-        public CustomerController(DataContext context, IMapper mapper, GenericRepository<Customer> repository) : base(context, mapper, repository)
+        public CustomerController( IMapper mapper, GenericRepository<Customer> repository) : base( mapper, repository)
         {
         }
 

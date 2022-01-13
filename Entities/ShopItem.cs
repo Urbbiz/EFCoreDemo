@@ -8,7 +8,9 @@ namespace EFCoreDemo.Entities
     {
         public bool Deleted { get; set; } = false;
 
+        public decimal Price { get; set; }
+
         public Shop? Shop { get; set; }
-        public int ShopId { get; set; }
+        public int ShopId { get; set; } = 0;
     }
 }

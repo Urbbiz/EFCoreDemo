@@ -9,14 +9,12 @@ namespace EFCoreDemo.Controllers.Base
 {
     public class GenericControllerBase<TDto, TEntity> : ControllerBase where TDto :DtoObject where TEntity : Entity
     {
-        private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly GenericRepository<TEntity> _repository;
 
 
-        public GenericControllerBase(DataContext context, IMapper mapper, GenericRepository<TEntity> repository)
+        public GenericControllerBase(IMapper mapper, GenericRepository<TEntity> repository)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper;
             _repository = repository;
         }
@@ -32,7 +30,6 @@ namespace EFCoreDemo.Controllers.Base
         }
 
         [HttpGet("{id}")]
-
         public TDto GetShop(int id)
         {
             var entity = _repository.FinidById(id);

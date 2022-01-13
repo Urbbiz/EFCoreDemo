@@ -14,7 +14,7 @@ namespace EFCoreDemo.Controllers
     public class ShopController : GenericControllerBase<ShopDto, Shop>
     {
 
-        public ShopController(DataContext context, IMapper mapper, GenericRepository<Shop> repository) : base(context, mapper, repository)
+        public ShopController(IMapper mapper, GenericRepository<Shop> repository) : base(mapper, repository)
         {
         }
 
