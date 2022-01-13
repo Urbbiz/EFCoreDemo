@@ -42,16 +42,16 @@ namespace EFCoreDemo.Controllers.Base
         [HttpPost]
         public async Task Post(TDto item)
         {
-            _context.Add(item);
-            await _context.SaveChangesAsync();
+            var entity = _mapper.Map<TEntity>(item);
+            await _repository.Post(entity);
         }
 
         [HttpPut]
         public async Task Update(TDto item)
         {
-            //_context.Shops.Update(item);
-            _context.Update(item);
-            await _context.SaveChangesAsync();
+            var entity = _mapper.Map<TEntity>(item);
+            ;
+            await _repository.Update(entity);
         }
 
         [HttpDelete("{id}")]

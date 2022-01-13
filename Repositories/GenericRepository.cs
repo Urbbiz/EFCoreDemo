@@ -20,6 +20,18 @@ namespace EFCoreDemo.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
+        public async Task Post(T entity)
+        {
+            _context.Add(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(T entity)
+        {
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
         public T FinidById(int id)
         {
             var entity = _context.Set<T>().FirstOrDefault(e => e.id == id);
