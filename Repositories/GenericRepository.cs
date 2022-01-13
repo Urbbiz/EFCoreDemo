@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EFCoreDemo.Data;
 using EFCoreDemo.Entities.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreDemo.Repositories
 {
@@ -11,7 +12,12 @@ namespace EFCoreDemo.Repositories
 
         public GenericRepository(DataContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentException(nameof(context));
+        }
+
+        public async Task<List<T>> GetAll()
+        {
+            return await _context.Set<T>().ToListAsync();
         }
 
         public T FinidById(int id)
