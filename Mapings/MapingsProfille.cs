@@ -10,6 +10,7 @@ namespace EFCoreDemo.Mapings
         {
             CreateMap<ShopItemDto, ShopItem>().ReverseMap();
             CreateMap<ShopDto, Shop>().ReverseMap();
+            CreateMap<CustomerDto, Customer>().ReverseMap();
         }
     }
 }

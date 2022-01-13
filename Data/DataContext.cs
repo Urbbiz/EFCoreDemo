@@ -21,6 +21,7 @@ namespace EFCoreDemo.Data
 
         public DbSet<ShopItem>? ShopItems { get; set; }
         public DbSet<Shop>? Shops { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
 
 
     }
