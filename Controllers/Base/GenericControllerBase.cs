@@ -3,6 +3,7 @@ using EFCoreDemo.Data;
 using EFCoreDemo.Dtos.Base;
 using EFCoreDemo.Entities.Base;
 using EFCoreDemo.Repositories;
+using EFCoreDemo.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFCoreDemo.Controllers.Base
@@ -11,7 +12,7 @@ namespace EFCoreDemo.Controllers.Base
     {
         private readonly IMapper _mapper;
         private readonly GenericRepository<TEntity> _repository;
-
+        
 
         public GenericControllerBase(IMapper mapper, GenericRepository<TEntity> repository)
         {
@@ -20,13 +21,12 @@ namespace EFCoreDemo.Controllers.Base
         }
 
         [HttpGet]
-        public async Task<List<TDto>> GetAll()
+        public async virtual Task<List<TDto>> GetAll()
         {
             // var enteties = await _context.ShopItems.ToListAsync();
             var enteties = await _repository.GetAll();
             var dto = _mapper.Map<List<TDto>>(enteties);
             return dto;
-
         }
 
         [HttpGet("{id}")]
